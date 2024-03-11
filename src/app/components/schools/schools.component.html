@@ -1,0 +1,47 @@
+<div class="container">
+    <app-menu-bar></app-menu-bar>
+    <div class="home-container">
+        <h1>Administrar colegios</h1>
+        <button (click)="toogleCreate()">{{action}}</button>
+        <form *ngIf="onCreateMode" [formGroup]="schoolForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" formControlName="nombre">
+            </div>
+            <div>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" formControlName="ciudad">
+            </div>
+            <div>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" formControlName="direccion">
+            </div>
+            <div>
+                <label for="estado">Estado:</label>
+                <select id="estado" formControlName="estado">
+                    <option value="activo">Activo</option>
+                    <option value="no-activo">No Activo</option>
+                </select>
+            </div>
+            <button type="submit" [disabled]="schoolForm.invalid">Guardar</button>
+        </form>
+        <table class="school-table" *ngIf="!onCreateMode && schools?.length>0">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Ciudad</th>
+                    <th>Dirección</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let school of schools">
+                    <td>{{ school.nombre }}</td>
+                    <td>{{ school.ciudad }}</td>
+                    <td>{{ school.direccion }}</td>
+                    <td>{{ school.estado }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
