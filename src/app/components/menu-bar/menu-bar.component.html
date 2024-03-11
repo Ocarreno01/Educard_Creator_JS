@@ -1,0 +1,11 @@
+<aside [ngClass]="{ sidebar: isMenuOpen }">
+  <div class="menu-icon" (click)="toggleMenu()">☰</div>
+  <ul *ngIf="isMenuOpen">
+    <li><a routerLink="/home">Inicio</a></li>
+    <li><a routerLink="/schools">Administrar colegios</a></li>
+    <li><a routerLink="/grades">Administrar cursos</a></li>
+    <li><a routerLink="/students">Administrar alumnos</a></li>
+    <li><a routerLink="/photos">Administrar fotografias</a></li>
+    <li><a routerLink="/pfds">Generar PDF`S</a></li>
+  </ul>
+</aside>
