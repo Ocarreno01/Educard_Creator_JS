@@ -1,0 +1,45 @@
+<div class="container">
+    <app-menu-bar></app-menu-bar>
+    <div class="home-container">
+        <h1>Administrar cursos</h1>
+        <button (click)="toogleCreate()">{{action}}</button>
+        <form *ngIf="onCreateMode" [formGroup]="gradeForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" formControlName="nombre">
+            </div>
+
+            <div>
+                <label for="colegio">Colegio:</label>
+                <select id="colegio" formControlName="colegio">
+                    <option value="">Seleccione</option>
+                    <option *ngFor="let school of schools" [value]="school.id">{{ school.nombre }}</option>
+                </select>
+            </div>
+            <button type="submit" [disabled]="gradeForm.invalid">Guardar</button>
+        </form>
+
+        <div>
+            <label for="selectColegio">Seleccionar Colegio:</label>
+            <select id="selectColegio" [(ngModel)]="selectedSchool" (change)="getGrades(selectedSchool)">
+                <option value="all">Todos los colegios</option>
+                <option *ngFor="let school of schools" [value]="school.id">{{ school.nombre }}</option>
+            </select>
+        </div>
+
+        <table class="school-table" *ngIf="!onCreateMode && grades?.length>0">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Colegio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let grade of grades">
+                    <td>{{ grade.nombre }}</td>
+                    <td>{{ getSchoolName(grade.colegio_id) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

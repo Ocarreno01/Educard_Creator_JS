@@ -10,6 +10,7 @@ import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { HomeComponent } from "./components/home/home.component";
 import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
 import { SchoolsComponent } from "./components/schools/schools.component";
+import { GradesComponent } from './components/grades/grades.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SchoolsComponent } from "./components/schools/schools.component";
     HomeComponent,
     MenuBarComponent,
     SchoolsComponent,
+    GradesComponent,
   ],
   imports: [
     BrowserModule,
