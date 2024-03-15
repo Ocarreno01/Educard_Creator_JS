@@ -4,6 +4,7 @@ import { environment } from "src/environments/environment";
 import { Observable, catchError, map, of } from "rxjs";
 import { School } from "../types/School.type";
 import { Grade } from "../types/Grade.type";
+import { Student } from "../types/Student.type";
 
 @Injectable({
   providedIn: "root",
@@ -69,6 +70,45 @@ export class Service {
       .post<any>(`${this.apiUrl}/api/createGrade`, gradeData, {
         headers: this.headers,
       })
+      .pipe(
+        map((response) => {
+          console.log("response", response);
+          return response || false;
+        }),
+        catchError(() => {
+          return of(false);
+        })
+      );
+  }
+
+  public getStudents(idGrade: string): Observable<any | boolean> {
+    return this.http
+      .get<Student[]>(`${this.apiUrl}/api/getStudents/${idGrade}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response) => {
+          console.log("response", response);
+          return response || false;
+        }),
+        catchError(() => {
+          return of(false);
+        })
+      );
+  }
+
+  public manageStudents(
+    excelData: any[],
+    selectedGrade: string
+  ): Observable<any | boolean> {
+    return this.http
+      .post<any>(
+        `${this.apiUrl}/api/manageStudents`,
+        { excelData, selectedGrade },
+        {
+          headers: this.headers,
+        }
+      )
       .pipe(
         map((response) => {
           console.log("response", response);

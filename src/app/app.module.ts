@@ -11,6 +11,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
 import { SchoolsComponent } from "./components/schools/schools.component";
 import { GradesComponent } from './components/grades/grades.component';
+import { StudentsComponent } from './components/students/students.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { GradesComponent } from './components/grades/grades.component';
     MenuBarComponent,
     SchoolsComponent,
     GradesComponent,
+    StudentsComponent,
   ],
   imports: [
     BrowserModule,

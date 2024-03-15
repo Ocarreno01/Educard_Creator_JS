@@ -1,0 +1,43 @@
+<div class="container">
+    <app-menu-bar></app-menu-bar>
+    <div class="home-container" *ngIf="!loading">
+        <h1>Administrar estudiantes</h1>
+        <div>
+            <label for="selectColegio">Seleccionar Colegio:</label>
+            <select id="selectColegio" [(ngModel)]="selectedSchool" (change)="onSelectedShool()">
+                <option *ngFor="let colegio of schools" [value]="colegio.id">{{ colegio.nombre }}</option>
+            </select>
+        </div>
+        <div *ngIf="grades && grades.length > 0">
+            <label for="selectCurso">Seleccionar Curso:</label>
+            <select id="selectCurso" [(ngModel)]="selectedGrade" (change)="onSelecteGrade()">
+                <option *ngFor="let curso of grades" [value]="curso.id">{{ curso.nombre }}</option>
+            </select>
+        </div>
+        <button *ngIf="selectedGrade && selectedSchool" (click)="searchStudents()">Buscar Alumnos</button>
+
+        <div *ngIf="searched">
+            <!-- Inserta aca una tabla para listar los estudiantes con los campos de nombre y numero de documento -->
+            <table *ngIf="students && students.length>0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Número de Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students">
+                        <td>{{ student.nombre }}</td>
+                        <td>{{ student.cedula }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {{(students && students.length===0) ? "Importar Alumnos" : "Editar Alumnos en bloque"}}
+            <input type="file" (change)="onFileChange($event)" accept=".xlsx,.xls">
+        </div>
+    </div>
+    <div class="home-container" *ngIf="loading">
+        <img src="../../../assets/loading.svg" alt="Loading..." width="50px" height="50px">
+    </div>
+</div>
