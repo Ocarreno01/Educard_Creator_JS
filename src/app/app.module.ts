@@ -12,6 +12,7 @@ import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
 import { SchoolsComponent } from "./components/schools/schools.component";
 import { GradesComponent } from './components/grades/grades.component';
 import { StudentsComponent } from './components/students/students.component';
+import { UploadPhotosComponent } from './components/upload-photos/upload-photos.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { StudentsComponent } from './components/students/students.component';
     SchoolsComponent,
     GradesComponent,
     StudentsComponent,
+    UploadPhotosComponent,
   ],
   imports: [
     BrowserModule,

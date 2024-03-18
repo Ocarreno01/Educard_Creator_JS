@@ -1,0 +1,42 @@
+<div class="container">
+    <app-menu-bar></app-menu-bar>
+    <div class="home-container">
+        <h1>Administrar fotografias</h1>
+        <div>
+            <label for="selectColegio">Seleccionar Colegio:</label>
+            <select id="selectColegio" [(ngModel)]="selectedSchool" (change)="onSelectedShool()">
+                <option *ngFor="let colegio of schools" [value]="colegio.id">{{ colegio.nombre }}</option>
+            </select>
+        </div>
+        <div *ngIf="grades && grades.length > 0">
+            <label for="selectCurso">Seleccionar Curso:</label>
+            <select id="selectCurso" [(ngModel)]="selectedGrade" (change)="onSelecteGrade()">
+                <option *ngFor="let curso of grades" [value]="curso.id">{{ curso.nombre }}</option>
+            </select>
+        </div>
+        <button *ngIf="selectedGrade && selectedSchool" (click)="searchPhotos()">Buscar Fotografias</button>
+
+        <div *ngIf="searched">
+
+            <table *ngIf="photos && photos.length>0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of photos">
+                        <td>{{ student.nombre }}</td>
+                        <td><img [src]="student.imagen" alt="Fotografia estudiantes"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h1>{{(photos && photos.length===0) ? "Subir Carpeta de Fotos" : "Editar fotos en bloque"}}</h1>
+            <h5>Archivos permitivos: .zip (Recuerda comprimir las imagenes <b>(Solo .jpg)</b> para poder subirlas )</h5>
+            <input type="file" ngFileSelect (change)="onFileChange($event)" accept=".zip">
+        </div>
+
+    </div>
+</div>

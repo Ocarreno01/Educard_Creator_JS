@@ -20,7 +20,7 @@
         </form>
 
         <div>
-            <label for="selectColegio">Seleccionar Colegio:</label>
+            <label for="selectColegio">Filtrar Colegio:</label>
             <select id="selectColegio" [(ngModel)]="selectedSchool" (change)="getGrades(selectedSchool)">
                 <option value="all">Todos los colegios</option>
                 <option *ngFor="let school of schools" [value]="school.id">{{ school.nombre }}</option>

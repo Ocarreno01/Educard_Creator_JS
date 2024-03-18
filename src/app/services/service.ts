@@ -97,6 +97,22 @@ export class Service {
       );
   }
 
+  public getPhotos(idGrade: string): Observable<any | boolean> {
+    return this.http
+      .get<Student[]>(`${this.apiUrl}/api/getPhotos/${idGrade}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response) => {
+          console.log("response", response);
+          return response || false;
+        }),
+        catchError(() => {
+          return of(false);
+        })
+      );
+  }
+
   public manageStudents(
     excelData: any[],
     selectedGrade: string
@@ -109,6 +125,22 @@ export class Service {
           headers: this.headers,
         }
       )
+      .pipe(
+        map((response) => {
+          console.log("response", response);
+          return response || false;
+        }),
+        catchError(() => {
+          return of(false);
+        })
+      );
+  }
+
+  public uploadPhotos(data: any): Observable<any | boolean> {
+    return this.http
+      .post<any>(`${this.apiUrl}/api/uploadPhotos`, data, {
+        headers: this.headers,
+      })
       .pipe(
         map((response) => {
           console.log("response", response);

@@ -5,6 +5,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { SchoolsComponent } from "./components/schools/schools.component";
 import { GradesComponent } from "./components/grades/grades.component";
 import { StudentsComponent } from "./components/students/students.component";
+import { UploadPhotosComponent } from "./components/upload-photos/upload-photos.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "schools", component: SchoolsComponent },
   { path: "grades", component: GradesComponent },
   { path: "students", component: StudentsComponent },
+  { path: "photos", component: UploadPhotosComponent },
   { path: "**", component: NotFoundComponent },
 ];
 
